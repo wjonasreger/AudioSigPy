@@ -109,7 +109,10 @@ from .src.speech_analysis import (
     find_endpoints
 )
 
-# from .src.processors import (...)
+from .src.processors import (
+    Processor,
+    Cochlear
+)
 
 from .src.waveform import (
     Waveform

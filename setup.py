@@ -24,7 +24,8 @@ setup(
         "numpy >= 1.24.3",
         "scipy >= 1.10.1",
         "matplotlib >= 3.7.1",
-        "pyloudnorm >= 0.1.1"
+        "pyloudnorm >= 0.1.1",
+        "imageio >= 2.34.2"
     ],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2"],
