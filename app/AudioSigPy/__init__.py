@@ -109,13 +109,19 @@ from .src.speech_analysis import (
     find_endpoints
 )
 
+from .src.waveform import (
+    Waveform
+)
+
 from .src.processors import (
     Processor,
     Cochlear
 )
 
-from .src.waveform import (
-    Waveform
+from .src.synthesizers import (
+    Synthesizer,
+    Drumset,
+    Piano
 )
 
 
