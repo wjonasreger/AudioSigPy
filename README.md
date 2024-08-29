@@ -1,20 +1,22 @@
+![AudioSigPy Banner](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/banner.png)
+
 # AudioSigPy
 
-## Hello, I'm AudioSigPy!
-Welcome to **AudioSigPy**! I'm a quirky, one-time audio and speech signal processing package designed for a bit of fun with sound. Dive in and see what cool audio tricks you can pull off!
+## Welcome to AudioSigPy
+**AudioSigPy** is a compact audio and speech signal processing package designed for exploration and experimentation with sound. Enjoy discovering what you can create!
 
-## Why You'll Enjoy Me
-**AudioSigPy** is here for those curious about audio processing or looking to experiment with sound synthesis. It's not about power or versatility—just a fun way to explore audio :)
+## Why Choose AudioSigPy?
+**AudioSigPy** is perfect for those interested in audio processing and sound synthesis. It's a fun tool for exploring the world of sound.
 
-## Fun Features
-- **Speech Analysis:** Peek into speech patterns.
-- **Cochlear Implant Simulation:** Play around with hearing tech simulations.
-- **Sound Synthesis:** Create interesting audio profiles and musical sounds.
-- **Noise Generation:** Generate color noise, waves, and more.
-- **.WAV Management:** Easily handle .WAV files for basic creation and editing.
+## Key Features
+- **Speech Analysis:** Analyze speech patterns.
+- **Cochlear Implant Simulation:** Experiment with hearing tech simulations.
+- **Sound Synthesis:** Create unique audio profiles and musical sounds.
+- **Noise Generation:** Produce waves, filter noise, and more.
+- **.WAV Management:** Manage .WAV files for basic creation and editing.
 
 ## Quick Setup
-Setting up **AudioSigPy** is easy:
+Getting started with **AudioSigPy** is straightforward:
 
 1. Clone the repository:
    ```sh
@@ -29,23 +31,36 @@ Setting up **AudioSigPy** is easy:
    pip install .
    ```
 
-## How to Use
-**Detailed usage examples are coming soon!** Stay tuned for simple guides on how to get the most out of **AudioSigPy**.
+## Usage
+
+Getting started with **AudioSigPy** is simple. Here's a basic example to help you begin:
+
+```py
+import numpy as np
+import AudioSigPy as asp
+
+# Create a Waveform object
+wf = asp.Waveform("your-waveform-name")
+
+# Read an audio file (.wav)
+wf.read("path-to-your-wav-file")
+
+# Visualize the waveform data
+wf.plot_waveform()
+```
+
+## Examples
+
+Explore the diverse capabilities of **AudioSigPy** with these example usage areas:
+- **Music**: Delve into sound synthesis, experiment with a talkbox effect, and generate music.
+- **Speech**: Conduct speech analysis and predict who's speaking.
+- **Hearing**: Simulate cochlear implants and deaf experiences, or create stereo hearing experiences tailored for languages and lyrics.
 
 ## Compatibility
-Designed for macOS. Sadly, Jonas will not bring future updates to support other operating systems. This is a one-time-fun-time kinda gig.
-
-## Join the Fun
-Want to contribute? We'd love your help!
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add awesome feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a pull request
+**AudioSigPy** is designed for macOS. Please note that no future updates are planned for other operating systems.
 
 ## License
-Feel free to use **AudioSigPy** with proper credit. Open for contributions and forks. No plans to expand beyond 2024, but all are free to contribute anytime in the future.
+**AudioSigPy** is open for use with proper credit. Contributions and forks are welcome. While the project won’t expand beyond 2024, contributions are always encouraged.
 
-## Meet the Creator
-Created by **W. Jonas Reger**. This project is a fun experiment in audio processing, started because Jonas wanted to hear what ["Für Elise" with a jazz swing](https://github.com/wjonasreger/fur_elise_swing) on piano would sound like.
+## Creator
+Created by **W. Jonas Reger** as a fun experiment in audio processing, inspired by a desire to hear ["Für Elise" with a jazz swing](https://github.com/wjonasreger/fur_elise_swing) on piano.
