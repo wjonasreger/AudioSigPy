@@ -84,7 +84,7 @@ def instant_stats(
     for i, lag in enumerate(lag_index):
         lag_signals[i, :] = Array.subset(
                                 array=signal,
-                                limits=[[lag[0], lag[0] + base_signal.shape[0]]],
+                                limits=[[lag[0], lag[0] + base_signal.shape[0] - 1]],
                                 axes=[0],
                                 method="index",
                                 how="inner"

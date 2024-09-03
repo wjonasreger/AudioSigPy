@@ -278,6 +278,6 @@ def find_endpoints(
             intensities[i, c] = Sound.calc_sil(window, raw=True)
             zcrs[i, c] = Sound.calc_zcr(window)
             silences[i, c] = 1 if intensities[i, c] < -int_threshold and \
-                (zcrs[i, c] < zcr_threshold or np.isnan(zcrs[i, c])) else 0
+                (zcrs[i, c] > zcr_threshold or np.isnan(zcrs[i, c])) else 0
             
     return (intensities, zcrs, silences)

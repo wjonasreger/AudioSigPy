@@ -587,19 +587,19 @@ class Cochlear(Processor):
             streams, energies = self.filterbank(signal=signal[:, channel], sample_rate=sample_rate)
             
             # Rectify amplitudes of node streams
-            streams = self.rectify( streams=streams, method=rectify)
+            streams = self.rectify(streams=streams, method=rectify)
             
             # Extract slow-varying envelopes for each node stream
-            streams = self.envelopes( streams=streams, sample_rate=sample_rate, cutoff=cutoff)
+            streams = self.envelopes(streams=streams, sample_rate=sample_rate, cutoff=cutoff)
             
             # Normalize envelope energy levels to account for gain
-            streams = self.normalize( streams=streams, rms=energies)
+            streams = self.normalize(streams=streams, rms=energies)
             
             # Steer current energy from frequency band partitions to node streams
-            streams = self.steer( streams=streams)
+            streams = self.steer(streams=streams)
             
             # Apply frequency envelopes to balance energy levels between streams
-            streams = self.balance( streams=streams, delta=balance)
+            streams = self.balance(streams=streams, delta=balance)
             
             up_signal.append(streams)
             
@@ -616,7 +616,7 @@ class Cochlear(Processor):
         carrier: str = "sine"
     ) -> np.ndarray:
         """
-        Apply the signal envelope to a carrier signal and adjsuting its SPL level.
+        Apply the signal envelope to a carrier signal and adjusting its SPL level.
 
         Args:
             signal (np.ndarray): The processed signal envelopes
@@ -678,7 +678,7 @@ class Cochlear(Processor):
         highcut: Optional[Union[float, int]] = None
     ) -> np.ndarray:
         """
-        Apply the signal envelope to a carrier signal and adjsuting its SPL level.
+        Apply the signal envelope to a carrier signal and adjusting its SPL level.
 
         Args:
             signal (np.ndarray): The processed signal envelopes
@@ -899,10 +899,104 @@ class Cochlear(Processor):
 class Talkbox(Processor):
     def __init__(
         self, 
-        node_count: int = 22, 
         band_count: int = 22, 
         lowcut: int = 20, 
         highcut: int = 20000, 
         scale: str = "octave"
     ) -> None:
-        super().__init__(node_count, band_count, lowcut, highcut, scale)
+        super().__init__(band_count, band_count, lowcut, highcut, scale)
+        
+    def process(
+        self,
+        signal: np.ndarray,
+        sample_rate: Union[float, int],
+        rectify: str = "full",
+        cutoff: Union[float, int] = 300,
+        balance: Union[float, int] = 1
+    ) -> np.ndarray:
+        """
+        Process the input signal through various stages of audio processing for a simple talkbox processor.
+
+        Args:
+            signal (np.ndarray): The input audio signal
+            sample_rate (Union[float, int]): The sample rate of the signal
+            rectify (str, optional): The method for rectifying the signal to DC. Defaults to "full".
+            cutoff (Union[float, int], optional): Cutoff frequency for lowpass filter envelope extraction. Defaults to 300.
+            balance (Union[float, int], optional): Balance factor of energy distribution. Defaults to 1.
+
+        Returns:
+            np.ndarray: The processed envelopes of the signal
+        """
+        
+        signal = Array.validate(array=signal)
+        up_signal = []
+        
+        # Iterate over each channel of signal
+        for channel in range(signal.shape[1]):
+        
+            # Generate filterbank on input audio signal
+            streams, energies = self.filterbank(signal=signal[:, channel], sample_rate=sample_rate)
+            
+            # Rectify amplitudes of node streams
+            streams = self.rectify(streams=streams, method=rectify)
+            
+            # Extract slow-varying envelopes for each node stream
+            streams = self.envelopes(streams=streams, sample_rate=sample_rate, cutoff=cutoff)
+            
+            # Normalize envelope energy levels to account for gain
+            streams = self.normalize(streams=streams, rms=energies)
+            
+            # Apply frequency envelopes to balance energy levels between streams
+            streams = self.balance(streams=streams, delta=balance)
+            
+            up_signal.append(streams)
+            
+        up_signal = np.stack(up_signal, axis=1)
+        
+        return up_signal
+    
+    def signal(
+        self,
+        carrier: np.ndarray,
+        modulator: np.ndarray,
+        sample_rate: Union[float, int],
+        target_spl: Union[float, int] = 70
+    ) -> np.ndarray:
+        """
+        Generate a talkbox signal effect
+
+        Args:
+            carrier (np.ndarray): Carrier signal
+            modulator (np.ndarray): Modulator signal from process
+            sample_rate (Union[float, int]): Sample rate of both signals (must be the same)
+            target_spl (Union[float, int], optional): Target sound pressure level. Defaults to 70.
+
+        Raises:
+            ValueError: If both signals do not have the same number of channels
+
+        Returns:
+            np.ndarray: The talkbox signal
+        """
+        
+        sample_count = np.min([carrier.shape[0], modulator.shape[0]])
+        carrier = Array.validate(array=carrier[:sample_count])
+        modulator = Array.validate(array=modulator[:sample_count])
+        
+        if modulator.shape[1] != carrier.shape[1]:
+            raise ValueError(f"[ERROR] Signal: Carrier and Modulator must have the same number of channels. Got {carrier.shape[1]} != {modulator.shape[1]}.")
+        
+        talkbox_signal = []
+        for channel in range(carrier.shape[1]):
+            streams, _ = self.filterbank(
+                signal=carrier[:, channel], sample_rate=sample_rate
+            )
+            streams *= modulator[:, channel]
+            talkbox_signal.append(streams)
+            
+        talkbox_signal = np.stack(talkbox_signal, axis=1).sum(axis=2)
+        
+        talkbox_signal, _ = Sound.spl_transform(
+            signal=talkbox_signal, target_spl=target_spl
+        )
+        
+        return talkbox_signal

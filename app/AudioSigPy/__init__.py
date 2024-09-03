@@ -1,3 +1,7 @@
+from .src.utils import (
+    manage_directory
+)
+
 from .src.array import (
     unsqueeze,
     align,
@@ -115,7 +119,8 @@ from .src.waveform import (
 
 from .src.processors import (
     Processor,
-    Cochlear
+    Cochlear,
+    Talkbox
 )
 
 from .src.synthesizers import (
@@ -127,7 +132,7 @@ from .src.synthesizers import (
 
 # Package-wide variables
 __version__ = '1.0.0'
-__author__ = 'W. Jonas Reger'
+__author__ = 'W. Jonas Reger' # why did i build this 
 
 # Initialization code
 print("AudioSigPy package initialized")
