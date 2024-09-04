@@ -18,4 +18,6 @@ A predictive classification of who's speaking—Biden or Trump?—during the 202
 
 ![Speaker Classification Plot](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/biden-trump.png)
 
-For those of you who read this far, I appreciate you :)
+For those of you who read this far, I appreciate you :) 
+
+Hi, Hess!
