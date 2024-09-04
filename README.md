@@ -51,10 +51,13 @@ wf.plot_waveform()
 
 ## Examples
 
-Explore the diverse capabilities of **AudioSigPy** with these example usage areas:
-- **Music**: Delve into sound synthesis, experiment with a talkbox effect, and generate music.
-- **Speech**: Conduct speech analysis and predict who's speaking.
-- **Hearing**: Simulate cochlear implants and deaf experiences, or create stereo hearing experiences tailored for languages and lyrics.
+Explore the diverse capabilities of **AudioSigPy** with these [example usage areas](https://github.com/wjonasreger/AudioSigPy/tree/main/examples):
+- **Music**: Delve into sound synthesis, experiment with a talkbox effect, and generate music. Pictured below is a spectrogram of a synthetically generated tune, "Bella Ciao."
+![Music Banner](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/bellaciao.png)
+- **Speech**: Conduct speech analysis and predict who's speaking. Pictured below is a 2D projection of spectral characteristics for Biden and Trump during the 2024 presidential debate.
+![Speech Banner](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/biden-trump.png)
+- **Hearing**: Simulate cochlear implants and deaf experiences, or create stereo hearing experiences tailored for languages and lyrics. Pictured below is a spectrogram of speech passed through a cochlear implant processor.
+![Hearing Banner](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/cochlear-implant.png)
 
 ## Compatibility
 **AudioSigPy** is designed for macOS. Please note that no future updates are planned for other operating systems.
