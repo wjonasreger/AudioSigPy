@@ -16,6 +16,6 @@ https://github.com/user-attachments/assets/7ae9d3a3-1c47-4caa-8d10-1eb5cc248b22
 
 A predictive classification of who's speaking—Biden or Trump?—during the 2024 presidential debate. Many metrics were computed on speech samples from both individuals, and two machine learning models were fitted to the metrics data. The multi-dimensional data had strong clustering structures, which yielded highly accurate predictions of who's speaking. Biden's speech was more tightly monotonous, while Trump's speech was more loosely dynamic, giving greater contrasts between their spectral qualities.
 
-[Speaker Classification Plot](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/biden-trump.png)
+![Speaker Classification Plot](https://raw.githubusercontent.com/wjonasreger/AudioSigPy/main/imgs/biden-trump.png)
 
 For those of you who read this far, I appreciate you :)
